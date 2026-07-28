@@ -15,7 +15,3 @@ def fetchPage(url: str):
     response.raise_for_status()
 
     return response.text
-
-
-if __name__ == "__main__":
-    print(fetchPage(booksURL)[:500])
