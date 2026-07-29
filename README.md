@@ -12,8 +12,7 @@ fetch → parse → extract → clean → structure → save
 | Step | Module | What it does |
 |------|--------|-------------|
 | **Fetch** | [`fetch.py`](fetch.py) | Downloads HTML with a polite User-Agent and 10s timeout |
-| **Parse** | [`parse.py`](parse.py) | (Extracts list-png, URL) and detail-page data (UPC, taxes, description,
-etc.) |
+| **Parse** | [`parse.py`](parse.py) | (Extracts list-png, URL) and detail-page data (UPC, taxes, description, etc.) |
 | **Clean** | [`clean.py`](clean.py) | (Normalizes raw ring → float/int) |
 | **Crawl** | [`crawl.py`](crawl.py) | Orchestrates the full pipeline, handles pagination, rate-limiting, and CSV export |
 | **Robots** | [`robots.py`](robots.py) | Robots.txt p and shared `rateLimit()` helper |
