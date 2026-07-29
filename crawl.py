@@ -1,8 +1,11 @@
 from fetch import fetchPage
 from parse import parseListPage, parseDetailPage
 from robots import rateLimit
+from clean import cleanBook
+from robots import fetchRobot, parseRobot
 from bs4 import BeautifulSoup
 import re
+import csv
 
 URL = "https://books.toscrape.com/catalogue/category/books_1/index.html"
 
@@ -17,8 +20,12 @@ def crawl_category(start_url: str):
         for book in books:
             clean_url = re.sub(r'^(\.\./)+', '', book["url"])
             detail_url = "https://books.toscrape.com/catalogue/" + clean_url
-            detail_data = parseDetailPage(fetchPage(detail_url))
-            all_books.append({**book, **detail_data})
+            try:
+                detail_data = parseDetailPage(fetchPage(detail_url))
+                rateLimit(1)
+                all_books.append(cleanBook({**book, **detail_data}))
+            except Exception:
+                print(f"Skipped {book['title']} — timed out")
 
         # Check for next page
         soup = BeautifulSoup(html, "html.parser")
@@ -38,5 +45,16 @@ def crawl_category(start_url: str):
 if __name__ == "__main__":
     books = crawl_category(URL)
     print(f"Category done: {len(books)} books")
-    if books:
-        print(books[0])
+
+    fieldnames = [
+        "title", "price", "rating", "url", "UPC", "Product Type",
+        "Price (excl. tax)", "Price (incl. tax)", "Tax",
+        "Availability", "Number of reviews", "Description"
+    ]
+
+    with open("books.csv", "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(books)
+
+    print(f"Saved {len(books)} books to books.csv")

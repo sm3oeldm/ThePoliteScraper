@@ -34,19 +34,3 @@ def parseDetailPage(html: str):
         "Number of reviews": tds[6].text,
         "Description": description,
     }
-
-if __name__ == "__main__":
-    from fetch import fetchPage
-
-    # Test list page
-    html = fetchPage("https://books.toscrape.com/catalogue/page-1.html")
-    books = parseListPage(html)
-    print(f"Found {len(books)} books")
-    for b in books[:2]:
-        print(b)
-
-    # Test detail page
-    print("\n--- Detail page test ---")
-    detail_html = fetchPage("https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html")
-    detail = parseDetailPage(detail_html)
-    print(detail)

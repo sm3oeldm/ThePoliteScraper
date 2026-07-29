@@ -45,15 +45,3 @@ def isAllowed(url: str, disallowed_paths: list):
 
 def rateLimit(delay: int):
     time.sleep(delay)
-
-
-
-
-
-
-if __name__ == "__main__":
-    text = fetchRobot()
-    print("fetchRobot result:", text)
-    if isinstance(text, str):
-        rules = parseRobot(text)
-        print("Parsed rules:", rules)
