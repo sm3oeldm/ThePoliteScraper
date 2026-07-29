@@ -12,15 +12,15 @@ fetch → parse → extract → clean → structure → save
 | Step | Module | What it does |
 |------|--------|-------------|
 | **Fetch** | [`fetch.py`](fetch.py) | Downloads HTML with a polite User-Agent and 10s timeout |
-| **Parse** | [`parse.py`](parse.py) | Extracts list-png, URL) and detail-page data (UPC, taxes, description,
+| **Parse** | [`parse.py`](parse.py) | (Extracts list-png, URL) and detail-page data (UPC, taxes, description,
 etc.) |
-| **Clean** | [`clean.py`](clean.py) | Normalizes raw ring → float/int) |
+| **Clean** | [`clean.py`](clean.py) | (Normalizes raw ring → float/int) |
 | **Crawl** | [`crawl.py`](crawl.py) | Orchestrates the full pipeline, handles pagination, rate-limiting, and CSV export |
 | **Robots** | [`robots.py`](robots.py) | Robots.txt p and shared `rateLimit()` helper |
 
 ## Results
 
-**999 books** scraped (1 skipped due to a transient ti](books.csv).
+**999 books** scraped (1 skipped due to a transient ti)(books.csv).
 
 Each row contains:
 
@@ -64,13 +64,13 @@ The scraper:
 - **Custom User-Agent** that identifies the project and provides contact info
 - **Per-book rate limit** (2s between detail pages)
 - **Per-page rate limit** (3s between list pages)
-- **Timeout tolerance** (skips individual books that t
+- **Timeout tolerance** (skips individual books that t)
 - **Robots.txt parser** ready for use (not enforced by default)
 
 ## Dependencies
 
 - [requests](https://pypi.org/project/requests/)
-- [beautifulsoup4](https://pypi.org/project/beautifuls
+- [beautifulsoup4](https://pypi.org/project/beautifuls)
 
 ## License
 
