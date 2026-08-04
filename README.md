@@ -19,7 +19,7 @@ fetch → parse → extract → clean → structure → save
 
 ## Results
 
-**999 books** scraped (1 skipped due to a transient ti)(books.csv).
+**999 books** scraped (1 skipped due to a transient ti)(books.csv)
 
 Each row contains:
 
